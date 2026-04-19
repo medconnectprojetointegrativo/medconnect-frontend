@@ -1,0 +1,18 @@
+import React from 'react';
+
+export default function ChevronDown(props) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24px"
+			height="24px"
+			viewBox="0 0 24 24"
+			{...props}
+		>
+			<path
+				fill="currentColor"
+				d="M18.707 8.293a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293a1 1 0 0 1 1.414 0"
+			></path>
+		</svg>
+	);
+}

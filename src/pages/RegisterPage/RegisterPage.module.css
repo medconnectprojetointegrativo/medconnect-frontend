@@ -1,0 +1,135 @@
+.pageStructure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100dvw;
+    height: 100dvh;
+    background-color: var(--white-variant);
+}
+
+.pageHeader {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+.img {
+    margin-bottom: 50px;
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+}
+
+.icons {
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: 0.2s;
+}
+
+.registerFormPage {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+.registerForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+
+.registrationConfirmed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100dvw;
+    gap: 20px;
+    color: var(--primary-color);
+}
+
+/* Definição da animação principal */
+@keyframes confirmedPopIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+    }
+    70% {
+        opacity: 1;
+        /* Dá um leve estouro (pop) antes de assentar */
+        transform: scale(1.2) rotate(5deg); 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Definição da animação de pulso contínuo (opcional) */
+@keyframes confirmedPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(46, 204, 113, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+    }
+}
+
+.registrationConfirmedIcon {
+    width: 200px;
+    height: 200px;
+    
+    /* Opcional: Centrar se for um SVG/Imagem interna */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Configuração da Animação de Entrada */
+    /* Nome | Duração | Timing Function | Delay | Fill Mode */
+    animation: confirmedPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+
+    /* Opcional: Adiciona um fundo arredondado e pulso se for só um check */
+    /* border-radius: 50%; */
+    /* background-color: #2ecc71; */ /* Verde Confirmação */
+    /* animation: confirmedPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both,
+                 confirmedPulse 2s infinite 1s; */ /* Começa o pulso após 1s */
+}
+
+.successSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    max-width: 300px;
+    gap: 10px;
+    text-align: center;
+}
+.successSectionVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.successSectionHidden {
+    opacity: 0;
+    transform: translateY(10px); /* Leve descida ao sumir */
+    pointer-events: none; /* Evita que o mouse interaja com o texto invisível */
+}

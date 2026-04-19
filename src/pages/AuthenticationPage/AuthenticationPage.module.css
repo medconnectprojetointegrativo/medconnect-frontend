@@ -1,0 +1,24 @@
+.pageStructure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100dvw;
+    height: 100dvh;
+    background-color: var(--white-variant);
+    gap: 50px;
+}
+
+.welcomeText {
+    text-align: center;
+}
+
+.welcomeText p {
+    line-height: 1;
+}
+
+.options {
+    width: 300px;
+    height: auto;
+}

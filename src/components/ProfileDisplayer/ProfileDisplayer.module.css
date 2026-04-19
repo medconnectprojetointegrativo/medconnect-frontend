@@ -1,0 +1,80 @@
+.profileDisplayer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+    padding: 2px;
+	padding-left: 20px;
+	background-color: var(--primary-color);
+	width: auto;
+	border-radius: 30px;
+    cursor: pointer;
+}
+
+.profileDisplayer span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 20px;
+	padding: 2px;
+	background-color: white;
+	cursor: pointer;
+    border: 2px solid white;
+}
+
+.profile-options {
+	position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 55px;
+	width: 200px;
+	height: auto;
+	background-color: white;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    transition: 200ms;
+    padding: 10px;
+}
+
+.profile-options-indicator {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: white; 
+    top: -7px;
+    right: 15px;
+    transform: rotate(45deg);
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.05); 
+    border-top: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
+}
+
+.profile-options-exit {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.profile-options-ul {
+    width: 100%;
+}
+
+.profile-options-ul li {
+    width: 100%;
+}
+
+.profile-options-button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.profile-options-button:hover {
+background-color: var(--background-color);
+
+    
+}

@@ -1,0 +1,110 @@
+.buttonBase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    transition: 0.2s;
+    gap: 15px;
+
+    border-radius: var(--standard-border-radius);
+
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+.iconBase {
+    fill: white;
+    transition: fill 0.2s;
+}
+
+
+.iconSmall {
+    width: 20px;
+    height: 20px;
+}
+.iconMedium {
+    width: 24px;
+    height: 24px;
+}
+.iconLarge {
+    width: 28px;
+    height: 28px;
+}
+
+
+
+.buttonSmall {
+    height: 30px;
+}
+
+.buttonMedium {
+    height: 36px;
+}
+
+.buttonLarge {
+    height: 44px;
+}
+.buttonExtraLarge {
+    height: 55px;
+}
+
+
+.buttonStandard {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+.buttonStandard:hover:not(:disabled) {
+    background-color: var(--hover-primary-color);
+}
+
+.buttonSecondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-sizing: border-box;
+}
+.buttonSecondary:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.buttonArrow {
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+.buttonArrow:hover:not(:disabled) {
+    background-color: var(--hover-primary-color);
+}
+
+
+/* WhatsApp Button */
+.whatsAppButtonStandard {
+    background-color: #128c7e;
+    color: white;
+    text-align: center;
+}
+.whatsAppButtonStandard:hover:not(:disabled) {
+    background-color: color-mix(in srgb, #128c7e, black 30%);
+}
+
+.whatsAppButtonSecondary {
+    background-color: white;
+    color: #128c7e;
+    border: 2px solid #128c7e;
+    box-sizing: border-box;
+}
+.whatsAppButtonSecondary:hover:not(:disabled) {
+    background-color: #128c7e;
+    border-color: #128c7e;
+    color: white;
+}
+

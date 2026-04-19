@@ -1,0 +1,104 @@
+.navigator {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	padding: 10px;
+	max-width: 200px;
+	height: 100dvh;
+	transition: 0.3s;
+	background-color: var(--primary-color);
+}
+
+.navigatorOpen {
+	width: 200px;
+}
+
+.navigatorClosed {
+	width: 70px;
+}
+
+.iconContainer {
+	width: 100%;
+	padding: 10px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--standard-border-radius);
+	cursor: pointer;
+	color: white;
+	transition: 0.2s;
+}
+.iconContainer:hover {
+	background-color: var(--hover-primary-color);
+}
+.menuLabel {
+	margin-left: 15px;
+}
+
+.menuIcon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 24px;
+	height: 24px;
+	align-self: center;
+	justify-self: center;
+	transition: 0.3s;
+}
+.menuIconOpen {
+	transform: rotate(90deg);
+}
+
+.exitIcon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 24px;
+	height: 24px;
+	align-self: center;
+	justify-self: center;
+	transition: 0.3s;
+}
+
+.optionsList {
+	width: 100%;
+	flex-grow: 1;
+	list-style-type: none;
+	text-decoration: none;
+	color: white;
+}
+
+.listOption {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	padding: 12px;
+	border-radius: var(--standard-border-radius);
+	transition: 0.2s;
+}
+.listOptionOpen {
+	justify-content: start;
+}
+
+.listOption:hover {
+	background-color: var(--hover-primary-color);
+}
+
+.link {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	color: white;
+	text-decoration: none;
+		transition: 0.2s;
+}
+
+.hidden {
+	display: none;
+}
+.visible {
+	display: block;
+}

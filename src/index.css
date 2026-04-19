@@ -1,0 +1,143 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis */
+:root {
+  /* Cores */
+  --primary-color: #1f5170;
+  --secondary-color: #53A9F3;
+  --white-variant: #FAFAFA;
+
+  --hover-primary-color: color-mix(in srgb, var(--primary-color), black 30%);
+  --disabled-primary-color: color-mix(in srgb, var(--primary-color), white 50%);
+
+  --tiny-text: 10pt;
+  --small-text: 12pt;
+  --standard-text: 14pt;
+  --medium-text: 16pt;
+  --large-text: 20pt;
+
+  /* Tamanhos de título */
+  --h3-text: 24pt;
+  --h2-text: 28pt;
+  --h1-text: 32pt;
+
+  /* Border Radius Padrão */
+  --standard-border-radius: 8px;
+
+}
+
+/* Cores de Texto */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+
+/* Tamanhos de Texto */
+.text-tiny {
+  font-size: var(--tiny-text);
+}
+
+.text-small {
+  font-size: var(--small-text);
+}
+
+.text-standard {
+  font-size: var(--standard-text);
+}
+
+.text-medium {
+  font-size: var(--medium-text);
+}
+
+.text-large {
+  font-size: var(--large-text);
+}
+
+
+/* Variantes da Fonte Kanit */
+.kanit-thin {
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.kanit-extralight {
+  font-family: "Kanit", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.kanit-light {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.kanit-regular {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kanit-medium {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.kanit-semibold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.kanit-bold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.kanit-extrabold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.kanit-black {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+.hidden {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
+
+.display {
+  display: block;
+}
+.displayNone {
+  display: none;
+}
+
+

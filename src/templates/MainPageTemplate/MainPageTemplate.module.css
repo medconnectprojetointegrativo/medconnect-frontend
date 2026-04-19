@@ -1,0 +1,47 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pageTemplate {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	box-sizing: border-box;
+	background-color: var(--white-variant);
+	padding: 0 20px 20px 20px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.header img {
+	height: 50px;
+}
+
+.pageLoader {
+	box-sizing: border-box;
+	background-color: white;
+	border-radius: 15px;
+	padding: 30px 30px;
+	border-radius: var(--standard-border-radius);
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+
+	flex: 1; /* Faz ele ocupar 100% do espaço RESTANTE */
+	min-height: 0; /* Permite que ele encolha se o conteúdo for grande */
+	display: flex; /* Para organizar a lista e a paginação dentro dele */
+	flex-direction: column;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+}
