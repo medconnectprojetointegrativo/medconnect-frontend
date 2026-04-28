@@ -28,7 +28,12 @@ export default function RegisterPage() {
 		{ index: 2, label: 'Documentação' },
 		{ index: 3, label: 'Definição de Senha' },
 	];
-	const [formData, setFormData] = useState({});
+	const [formData, setFormData] = useState({
+		personalInformation: {},
+		contact: {},
+		documentation: {},
+		password: {},
+	});
 	const formCompleted = activeFormStep === formSteps.length;
 
 	const [showSuccessSection, setShowSuccessSection] = useState(false);
