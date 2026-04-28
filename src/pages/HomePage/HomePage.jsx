@@ -32,6 +32,10 @@ export default function HomePage() {
 			return 'Boa noite!';
 	};
 
+	storage.save('user-info', {
+		first_name: 'Usuário',
+	});
+
 	return (
 		<MainPageTemplate>
 			<section className={style.section}>
