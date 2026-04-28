@@ -1,18 +1,23 @@
-import style from './AuthenticationPage.module.css'
+// Style Import
+import style from './AuthenticationPage.module.css';
 
+// External Code Import
+import { useNavigate } from 'react-router';
+import { authenticationRoutes } from '../../routes/routesPaths';
+
+// Component Import
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Divider/Divider';
 
+// Icon, Image and Video Import
 import MEDCONNECT_FULL_LOGO_VERTICAL from '/public-images/medconnect-full-logo-vertical.png';
 
-import { useNavigate } from 'react-router';
-import { authenticationRoutes } from '../../routes/routesPaths';
 
 
 export default function AuthenticationPage() {
 	const navigate = useNavigate();
 
-    return (
+	return (
 		<main className={style.pageStructure}>
 			<img
 				src={MEDCONNECT_FULL_LOGO_VERTICAL}

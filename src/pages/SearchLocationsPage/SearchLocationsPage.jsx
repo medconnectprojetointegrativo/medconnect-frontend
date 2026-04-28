@@ -1,34 +1,41 @@
+// Style Import
+import style from './SearchLocationsPage.module.css';
+
+// External Code Import
+import { homePath } from '../../routes/routesPaths';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import locationsData from '../../mocks/locationsData.js'
+
+// Component Import
 import LocationDisplayer from '../../components/LocationDisplayer/LocationDisplayer';
 import PageIndicator from '../../components/PageIndicator/PageIndicator';
-import { homePath } from '../../routes/routesPaths';
 import MainPageTemplate from '../../templates/MainPageTemplate/MainPageTemplate';
-import style from './SearchLocationsPage.module.css';
-import INTEGRALE_ODONTO from '../../assets/images/INTEGRALE_ODONTO.jpg'
+import SearchBar from '../../components/SearchBar/SearchBar.jsx';
+
 
 export default function SearchLocationsPage() {
-	const locationsData = [
-		{
-			id: '7K9vR',
-			name: 'Integrale Odontologia',
-			logo: INTEGRALE_ODONTO,
-			distance: '10 KM',
-			address: 'R. 33, 437 - Centro, Goianésia - GO',
-		},
-	];
+	const navigate = useNavigate();
+	const locations = locationsData;
+	const [filteredLocations, setFilteredLocations] = useState(locationsData);
 
 	return (
 		<MainPageTemplate>
 			<section className={style.section}>
 				<PageIndicator
-					pageName="Procurar Clínicas"
-					returnTo={homePath}
+					pageName="Clínicas"
+					returnTo={() => navigate(homePath)}
+					marginTop="0"
+					marginBottom="0"
 				/>
 
-				<div className={style.content}>
-					<h1 className="kanit-semibold">Clínicas</h1>
+				<div className={style.actions}>
+					<SearchBar input={locations} output={setFilteredLocations} searchKey="name"/>
+				</div>
 
-					<ul>
-						{locationsData.map((locationData) => (
+				<div className={style.content}>
+					<ul className={style.locationsList}>
+						{filteredLocations.map((locationData) => (
 							<LocationDisplayer
 								key={locationData.id}
 								location={locationData}

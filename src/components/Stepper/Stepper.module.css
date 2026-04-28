@@ -4,12 +4,15 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+    width: 100%;
 }
 
 .stepperContainer {
   display: flex;
-  gap: 8px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  gap: 5px;
 }
 
 .left { justify-content: flex-start; }
@@ -18,7 +21,8 @@
 
 .step {
   height: 25px;
-  min-width: 100px;
+  min-width: 50px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

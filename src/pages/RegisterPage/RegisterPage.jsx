@@ -1,28 +1,36 @@
+// Style Import
 import style from './RegisterPage.module.css';
 
-import Stepper from '../../components/Stepper/Stepper';
-import ArrowLeft from '../../assets/icons/ArrowLeft';
+// External Code Import
+import { useEffect, useState } from 'react';
+import { Form, useNavigate } from 'react-router';
+import { authenticationRoutes } from '../../routes/routesPaths';
+
+// Component Import
+import FormPage0 from './FormPage0';
 import FormPage1 from './FormPage1';
 import FormPage2 from './FormPage2';
-
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { authenticationRoutes } from '../../routes/routesPaths';
 import FormPage3 from './FormPage3';
-import FormPage4 from './FormPage4';
-import Check from '../../assets/icons/Check';
+import Stepper from '../../components/Stepper/Stepper';
 import Button from '../../components/Button/Button';
+import PageIndicator from '../../components/PageIndicator/PageIndicator';
+
+// Icon, Image and Video Import
+import ArrowLeft from '../../assets/icons/ArrowLeft';
+import Check from '../../assets/icons/Check';
+import House from '../../assets/icons/House';
 
 export default function RegisterPage() {
-	const [activeStep, setActiveStep] = useState(0);
-	const [formData, setFormData] = useState({});
-	const steps = [
-		'Informações Pessoais',
-		'Documentação',
-		'Contato',
-		'Definição de Senha',
+	const [activeFormStep, setActiveFormStep] = useState(0);
+	const formSteps = [
+		{ index: 0, label: 'Informações Pessoais' },
+		{ index: 1, label: 'Contato' },
+		{ index: 2, label: 'Documentação' },
+		{ index: 3, label: 'Definição de Senha' },
 	];
-	const formCompleted = activeStep === steps.length;
+	const [formData, setFormData] = useState({});
+	const formCompleted = activeFormStep === formSteps.length;
+
 	const [showSuccessSection, setShowSuccessSection] = useState(false);
 
 	const navigate = useNavigate();
@@ -39,76 +47,70 @@ export default function RegisterPage() {
 		}
 	}, [formCompleted]);
 
-	useEffect(() => {
-		console.log(formData);
-	}, [formData]);
-
 	return (
-		<>
+		<main className={style.page}>
 			{!formCompleted && (
-				<main className={style.pageStructure}>
-					<div className={style.pageHeader}>
-						<ArrowLeft
-							className={style.icons}
-							onClick={() => {
-								if (activeStep === 0 || activeStep < 0) {
-									navigate(
-										authenticationRoutes.authenticationPage,
-									);
-								} else {
-									setActiveStep(activeStep - 1);
-								}
-							}}
-						/>
-						<p className="kanit-light text-primary ">
-							Página de Cadastro
-						</p>
-						<span></span>
-					</div>
+				<section className={style.sectionStructure}>
+					<PageIndicator
+						pageName="Cadastro"
+						returnTo={() => {
+							if (activeFormStep > 0)
+								setActiveFormStep(activeFormStep - 1);
+							if (activeFormStep <= 0)
+								navigate(
+									authenticationRoutes.authenticationPage,
+								);
+						}}
+					>
+						<div className={style.pageIndicatorExtraFunction} onClick={() => navigate(authenticationRoutes.authenticationPage)}>
+							<House style={{ width: '20px', heigth: '20px' }} />
+							<p className='kanit-regular text-tiny'>Sair</p>
+						</div>
+					</PageIndicator>
 
 					<Stepper
-						steps={steps}
-						currentStep={activeStep}
+						formSteps={formSteps}
+						currentStep={activeFormStep}
 					/>
 
 					<div className={style.formDisplayer}>
-						{activeStep === 0 && (
+						{activeFormStep === 0 && (
+							<FormPage0
+								pageData={formData}
+								setPageData={setFormData}
+								activeStep={activeFormStep}
+								setActiveStep={setActiveFormStep}
+							/>
+						)}
+
+						{activeFormStep === 1 && (
 							<FormPage1
-								registerPageData={formData}
-								setRegisterPageData={setFormData}
-								activeStep={activeStep}
-								setActiveStep={setActiveStep}
+								pageData={formData}
+								setPageData={setFormData}
+								activeStep={activeFormStep}
+								setActiveStep={setActiveFormStep}
 							/>
 						)}
 
-						{activeStep === 1 && (
+						{activeFormStep === 2 && (
 							<FormPage2
-								registerPageData={formData}
-								setRegisterPageData={setFormData}
-								activeStep={activeStep}
-								setActiveStep={setActiveStep}
+								pageData={formData}
+								setPageData={setFormData}
+								activeStep={activeFormStep}
+								setActiveStep={setActiveFormStep}
 							/>
 						)}
 
-						{activeStep === 2 && (
+						{activeFormStep === 3 && (
 							<FormPage3
-								registerPageData={formData}
-								setRegisterPageData={setFormData}
-								activeStep={activeStep}
-								setActiveStep={setActiveStep}
-							/>
-						)}
-
-						{activeStep === 3 && (
-							<FormPage4
-								registerPageData={formData}
-								setRegisterPageData={setFormData}
-								activeStep={activeStep}
-								setActiveStep={setActiveStep}
+								pageData={formData}
+								setPageData={setFormData}
+								activeStep={activeFormStep}
+								setActiveStep={setActiveFormStep}
 							/>
 						)}
 					</div>
-				</main>
+				</section>
 			)}
 
 			{formCompleted && (
@@ -117,9 +119,12 @@ export default function RegisterPage() {
 					<section
 						className={`${style.successSection} ${showSuccessSection ? style.successSectionVisible : style.successSectionHidden}`}
 					>
-						<p className='kanit-bold'>Cadastro realizado com sucesso!</p>
-						<p className='kanit-regular text-black'>
-							Tudo pronto! Realize o Login na área inicial para entrar na sua conta.
+						<p className="kanit-bold">
+							Cadastro realizado com sucesso!
+						</p>
+						<p className="kanit-regular text-black">
+							Tudo pronto! Realize o Login na área inicial para
+							entrar na sua conta.
 						</p>
 						<Button
 							onClick={() =>
@@ -133,6 +138,6 @@ export default function RegisterPage() {
 					</section>
 				</main>
 			)}
-		</>
+		</main>
 	);
 }

@@ -10,51 +10,71 @@ import TextInput from '../../components/Inputs/TextInput/TextInput';
 import Button from '../../components/Button/Button';
 import DateInput from '../../components/Inputs/DateInput/DateInput';
 import SelectInput from '../../components/Inputs/SelectInput/SelectInput';
-import FileUploader from '../../components/FileUploader/FileUploader';
 
-export default function FormPage2({
+// Icon, Image and Video Import
+import FilledIntersexSymbol from '../../assets/icons/FilledIntersexSymbol'
+
+export default function FormPage0({
 	pageData,
 	setPageData,
 	activeStep,
 	setActiveStep,
 }) {
 	const [localFormData, setLocalFormData] = useState(
-		pageData.documentation || {},
+		pageData.personalInformation || {},
 	);
-
-	const handleFilesChange = (selectedFiles) => {
-		setLocalFormData((prev) => ({
-			...prev,
-			files: selectedFiles,
-		}));
-	};
 
 	// Função de Validação (Será implementada no Back-End)
 	function validateData(data) {
-		setPageData({ ...pageData, documentation: localFormData.files });
+		setPageData({ ...pageData, personalInformation: data });
 		setLocalFormData(data);
 		setActiveStep(activeStep + 1);
 	}
 
+	const sexOptions = [
+		{ value: 'M', label: 'Masculino' },
+		{ value: 'F', label: 'Feminino' },
+	];
+
 	return (
 		<section className={style.formSection}>
 			<POSTForm
-				id="documentation_form"
+				id="personal_information_form"
 				className={style.form}
 				onSubmit={validateData}
 				setExternalFormData={setLocalFormData}
 			>
-				<FileUploader
-					accept=".PDF"
-					multiple={false}
-					onFilesSelected={handleFilesChange}
+				<TextInput
+					name="first_name"
+					placeholder="Nome"
+					label="Nome"
+					form="personal_information_form"
+				/>
+				<TextInput
+					name="last_name"
+					placeholder="Sobrenome"
+					label="Sobrenome"
+					form="personal_information_form"
+				/>
+				<DateInput
+					name="birthday"
+					placeholder="DD/MM/AAAA"
+					label="Data de nascimento"
+					form="personal_information_form"
+				/>
+				<SelectInput
+					name="sex"
+					options={sexOptions}
+					label="Sexo"
+					form="personal_information_form"
+					icon={FilledIntersexSymbol}
 				/>
 			</POSTForm>
 			<Button
 				variant="arrow"
 				width="100%"
 				height="medium"
-				form="documentation_form"
+				form="personal_information_form"
 				text="Continuar"
 				type="submit"
 			/>

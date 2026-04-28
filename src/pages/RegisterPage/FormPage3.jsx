@@ -6,49 +6,131 @@ import POSTForm from '../../components/POSTForm/POSTForm';
 import TextInput from '../../components/Inputs/TextInput/TextInput';
 import Button from '../../components/Button/Button';
 
+import Password from '../../assets/icons/Password';
+import Check from '../../assets/icons/Check';
+import Warning from '../../assets/icons/Warning';
+import ErrorFull from '../../assets/icons/ErrorFull';
+
 export default function FormPage3({
-	registerPageData,
-	setRegisterPageData,
+	pageData,
+	setPageData,
 	activeStep,
 	setActiveStep,
 }) {
 	const [localFormData, setLocalFormData] = useState(
-		registerPageData.thirdPageData || {},
+		pageData.password || {},
 	);
+	const [password, setPassword] = useState('');
+	const [confirmationPassword, setConfirmationPassword] = useState('');
+
+	function checkContainsCapitalLetter(value) {
+		const regex = /[A-Z]/;
+		const containsCapitalLetter = regex.test(value);
+		return containsCapitalLetter;
+	}
+	function checkContainsLowercaseLetter(value) {
+		const regex = /[a-z]/;
+		const containsLowercaseLetter = regex.test(value);
+		return containsLowercaseLetter;
+	}
+	function checkContainsNumber(value) {
+		const regex = /\d/;
+		const containsContainsNumber = regex.test(value);
+		return containsContainsNumber;
+	}
+	function checkSpecialCharacter(value) {
+		const regex = /(?=.*[!@#$%&*])/;
+		const containsSpecialCharacter = regex.test(value);
+		return containsSpecialCharacter;
+	}
+
+	const passwordRequirements = [
+		{ label: '8 caracteres', isValid: password.length >= 8 },
+		{
+			label: 'Uma letra maiúscula.',
+			isValid: checkContainsCapitalLetter(password),
+		},
+		{
+			label: 'Uma letra minúscula.',
+			isValid: checkContainsLowercaseLetter(password),
+		},
+		{ label: 'Um número.', isValid: checkContainsNumber(password) },
+		{
+			label: 'Um caractere especial (!@#$%&*).',
+			isValid: checkSpecialCharacter(password),
+		},
+	];
+
+	const passwordIsValid = passwordRequirements.every(
+		(requirement) => requirement.isValid,
+	);
+	const passwordsMatch = password === confirmationPassword;
 
 	// Função de Validação (Será implementada no Back-End)
 	function validateData(data) {
-		setRegisterPageData({ ...registerPageData, thirdPageData: data });
-		setLocalFormData(data);
-		setActiveStep(activeStep + 1);
+		if (passwordIsValid && passwordsMatch) {
+			setPageData({ ...pageData, password: data });
+			setLocalFormData(data);
+			setActiveStep(activeStep + 1);
+		}
 	}
 
 	return (
-		<section className={style.registerFormPage}>
+		<section className={style.formSection}>
 			<POSTForm
-				id="third_register_page"
-				className={style.registerForm}
+				id="password_form"
+				className={style.form}
 				onSubmit={validateData}
 				setExternalFormData={setLocalFormData}
 			>
 				<TextInput
-					name="phone_number"
-					placeholder="(**) ****-****"
-					label="Telefone"
-					form="third_register_page"
+					name="password"
+					placeholder="********"
+					label="Senha"
+					form="password_form"
+					type="password"
+					icon={Password}
+					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<TextInput
-					name="email"
-					placeholder="E-mail"
-					label="E-mail"
-					form="third_register_page"
+					name="confirmation_password"
+					placeholder="********"
+					label="Confirmar senha"
+					form="password_form"
+					type="password"
+					icon={Password}
+					onChange={(e) => setConfirmationPassword(e.target.value)}
 				/>
 			</POSTForm>
+
+			<section>
+				<p className="kanit-regular">
+					Sua senha deve conter no mínimo:
+				</p>
+				<ul>
+					{passwordRequirements.map((requirement, index) => (
+						<li
+							key={index}
+							style={{
+								color: requirement.isValid
+									? '#2ecc71'
+									: '#e74c3c',
+
+							}}
+							className={`kanit-regular ${style.passwordRequirement}`}
+						>
+							{requirement.isValid ? <Check /> : <ErrorFull />}
+							{requirement.label}
+						</li>
+					))}
+				</ul>
+			</section>
+
 			<Button
 				variant="arrow"
 				width="100%"
 				height="medium"
-				form="third_register_page"
+				form="password_form"
 				text="Continuar"
 				type="submit"
 			/>
