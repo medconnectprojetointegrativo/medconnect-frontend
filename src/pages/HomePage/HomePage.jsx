@@ -1,16 +1,22 @@
-import style from './HomePage.module.css'
+// Style Import
+import style from './HomePage.module.css';
 
+// External Code Import
+import { useNavigate } from 'react-router';
+import { appointmentRoutes } from '../../routes/routesPaths';
 import storage from '../../utils/localStorage';
 
+// Component Import
 import MainPageTemplate from '../../templates/MainPageTemplate/MainPageTemplate';
-import Divider from '../../components/Divider/Divider'
+import Divider from '../../components/Divider/Divider';
 import Button from '../../components/Button/Button';
+
+// Icon, Image and Video Import
 import Hospital from '../../assets/icons/Hospital';
 import Exam from '../../assets/icons/Exam';
 import Vaccine from '../../assets/icons/Vaccine';
 import Calendar from '../../assets/icons/Calendar';
-import { useNavigate } from 'react-router';
-import { appointmentRoutes } from '../../routes/routesPaths';
+
 
 export default function HomePage() {
 	const navigate = useNavigate();
@@ -31,7 +37,9 @@ export default function HomePage() {
 			<section className={style.section}>
 				<div className={style.greetings}>
 					<p className="kanit-regular text-medium">{greetings()}</p>
-					<strong className='kanit-semibold text-medium'>{storage.get('user-info').first_name},</strong>
+					<strong className="kanit-semibold text-medium">
+						{storage.get('user-info').first_name},
+					</strong>
 					<p className="kanit-regular">como podemos ajudá-lo?</p>
 				</div>
 
@@ -42,7 +50,9 @@ export default function HomePage() {
 						text="Consultas"
 						height="extraLarge"
 						className={style.mainButton}
-						onClick={() => navigate(appointmentRoutes.searchLocationsPage)}
+						onClick={() =>
+							navigate(appointmentRoutes.searchLocationsPage)
+						}
 					/>
 					<Button text="Exames" variant="secondary" height="large" />
 					<Button

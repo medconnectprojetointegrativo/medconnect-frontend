@@ -96,7 +96,7 @@ export default function SelectInput({
 					{options.map((option) => (
 						<li
 							key={option.value}
-							className={`${style.optionItem} kanit-light text-small`}
+							className={`${style.optionItem} kanit-light text-tiny`}
 							onClick={() => handleOptionClick(option)}
 						>
 							{option.label}

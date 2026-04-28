@@ -1,34 +1,46 @@
+// Style Import
 import style from './LocationInformationPage.module.css';
 
+// External Code Import
+import { appointmentRoutes } from '../../routes/routesPaths';
+import { useNavigate, useParams } from 'react-router';
+import locationsData from '../../mocks/locationsData';
+
+// Component Import
 import MainPageTemplate from '../../templates/MainPageTemplate/MainPageTemplate';
 import Divider from '../../components/Divider/Divider';
 import PageIndicator from '../../components/PageIndicator/PageIndicator';
-import MEDCONNECT_WHITE_LOGO from '/public-images/medconnect-full-logo-vertical-white.png';
 import Button from '../../components/Button/Button';
 import WhatsAppButton from '../../components/Button/WhatsAppButton';
-import { appointmentRoutes } from '../../routes/routesPaths';
-import { useNavigate } from 'react-router';
+
+// Icon, Image and Video Import
+import MEDCONNECT_WHITE_LOGO from '/public-images/medconnect-full-logo-vertical-white.png';
 import INTEGRALE_ODONTO from '../../assets/images/INTEGRALE_ODONTO.jpg';
+import FilledStar from '../../assets/icons/FilledStar';
 
 export default function LocationInformationPage() {
 	const navigate = useNavigate();
-	const id = '7K9vR';
-	const locationData = {
-		id: '7K9vR',
-		name: 'Integrale Odontologia',
-		type: 'Clínica Odontológica',
-		rating: '4.8',
-		logo: INTEGRALE_ODONTO,
-	};
+	const { location_id } = useParams();
+
+	const locationData = locationsData.find(
+		(location) => location_id === location.id,
+	);
 
 	return (
 		<MainPageTemplate>
 			<section className={style.section}>
-				<div className={style.mainInformation}>
+				<div className={style.pageIndicator}>
 					<PageIndicator
 						pageName="Clínica"
-						returnTo={appointmentRoutes.searchLocationsPage}
+						returnTo={() =>
+							navigate(appointmentRoutes.searchLocationsPage)
+						}
+						marginBottom="15px"
+						marginTop="0"
 					/>
+				</div>
+
+				<div className={style.mainInformation}>
 					<img
 						src={locationData.logo}
 						alt="Logo do Local"
@@ -41,8 +53,14 @@ export default function LocationInformationPage() {
 						<p className="kanit-regular text-small">
 							{locationData.type}
 						</p>
-						<p className="kanit-medium text-small">
-							Avaliação geral do local: {locationData.rating}
+						<p
+							className={`${style.rating} kanit-medium text-small`}
+						>
+							Avaliação geral do local:{' '}
+							<FilledStar className={style.star} />{' '}
+							<strong className={style.ratingValue}>
+								{locationData.rating}
+							</strong>
 						</p>
 					</article>
 					<Divider direction="horizontal" size="300px" />
@@ -52,7 +70,9 @@ export default function LocationInformationPage() {
 							height="large"
 							onClick={() =>
 								navigate(
-									appointmentRoutes.makeAppointmentPage(id),
+									appointmentRoutes.makeAppointmentPage(
+										location_id,
+									),
 								)
 							}
 						/>

@@ -1,73 +1,57 @@
+// Style Import
 import style from './RegisterPage.module.css';
 
+// External Code Import
 import { useEffect, useState } from 'react';
 
+// Component Import
 import POSTForm from '../../components/POSTForm/POSTForm';
 import TextInput from '../../components/Inputs/TextInput/TextInput';
 import Button from '../../components/Button/Button';
-import DateInput from '../../components/Inputs/DateInput/DateInput';
-import SelectInput from '../../components/Inputs/SelectInput/SelectInput';
 
 export default function FormPage1({
-	registerPageData,
-	setRegisterPageData,
+	pageData,
+	setPageData,
 	activeStep,
 	setActiveStep,
 }) {
 	const [localFormData, setLocalFormData] = useState(
-		registerPageData.firstPageData || {},
+		pageData.contact || {},
 	);
 
 	// Função de Validação (Será implementada no Back-End)
 	function validateData(data) {
-		setRegisterPageData({...registerPageData, firstPageData: data});
+		setPageData({ ...pageData, contact: data });
 		setLocalFormData(data);
 		setActiveStep(activeStep + 1);
 	}
 
-	const sexOptions = [
-		{ value: 'M', label: 'Masculino' },
-		{ value: 'F', label: 'Feminino' },
-	];
-
 	return (
-		<section className={style.registerFormPage}>
+		<section className={style.formSection}>
 			<POSTForm
-				id="first_register_page"
-				className={style.registerForm}
+				id="contact_form"
+				className={style.form}
 				onSubmit={validateData}
 				setExternalFormData={setLocalFormData}
 			>
 				<TextInput
-					name="first_name"
-					placeholder="Nome"
-					label="Nome"
-					form="first_register_page"
+					name="phone_number"
+					placeholder="(**) ****-****"
+					label="Telefone"
+					form="contact_form"
 				/>
 				<TextInput
-					name="last_name"
-					placeholder="Sobrenome"
-					label="Sobrenome"
-					form="first_register_page"
-				/>
-				<DateInput
-					name="birthday"
-					placeholder="DD/MM/AAAA"
-					label="Data de nascimento"
-					form="first_register_page"
-				/>
-				<SelectInput
-					name="sex"
-					options={sexOptions}
-					label="Sexo"
-					form="first_register_page"
+					name="email"
+					placeholder="E-mail"
+					label="E-mail"
+					form="contact_form"
 				/>
 			</POSTForm>
 			<Button
 				variant="arrow"
 				width="100%"
 				height="medium"
-				form="first_register_page"
+				form="contact_form"
 				text="Continuar"
 				type="submit"
 			/>

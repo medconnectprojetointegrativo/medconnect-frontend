@@ -26,3 +26,19 @@
     border-radius: var(--standard-border-radius);
 }
 
+.locationName {
+    margin-bottom: 5px;
+}
+
+.locationAddress {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.locationIcon {
+    width: 16px;
+    height: 16px;
+}
+

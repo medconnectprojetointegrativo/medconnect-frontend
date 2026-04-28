@@ -1,24 +1,36 @@
-import { useNavigate, useSearchParams } from 'react-router';
-import PageIndicator from '../../components/PageIndicator/PageIndicator';
+// Style Import
+import style from './MakeAppointmentPage.module.css';
+
+// External Code Import
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router';
 import {
 	appointmentRoutes,
 	authenticationRoutes,
 	homePath,
 } from '../../routes/routesPaths';
+import locationsData from '../../mocks/locationsData';
+
+// Component Import
 import MainPageTemplate from '../../templates/MainPageTemplate/MainPageTemplate';
-import MEDCONNECT_WHITE_LOGO from '/public-images/medconnect-full-logo-vertical-white.png';
-import style from './MakeAppointmentPage.module.css';
+import PageIndicator from '../../components/PageIndicator/PageIndicator';
 import Divider from '../../components/Divider/Divider';
 import SelectInput from '../../components/Inputs/SelectInput/SelectInput';
 import Button from '../../components/Button/Button';
-import { useEffect, useState } from 'react';
-import Check from '../../assets/icons/Check';
+
+// Icon, Image and Video Import
+import MEDCONNECT_WHITE_LOGO from '/public-images/medconnect-full-logo-vertical-white.png';
 import INTEGRALE_ODONTO from '../../assets/images/INTEGRALE_ODONTO.jpg';
+import Check from '../../assets/icons/Check';
 
 export default function MakeAppointmentPage() {
 	const navigate = useNavigate();
-	const [searchParams] = useSearchParams();
-	const locationId = searchParams.get('location_id');
+	const { location_id } = useParams();
+
+	const locationData = locationsData.find(
+		(location) => location_id === location.id,
+	);
+
 	const [appointmentCompleted, setAppointmentCompleted] = useState(false);
 	const [showSuccessSection, setShowSuccessSection] = useState(false);
 
@@ -69,14 +81,6 @@ export default function MakeAppointmentPage() {
 		},
 	];
 
-	const locationData = {
-		id: '7K9vR',
-		name: 'Integrale Odontologia',
-		type: 'Clínica Odontológica',
-		rating: '4.8',
-		logo: INTEGRALE_ODONTO,
-	};
-
 	useEffect(() => {
 		if (appointmentCompleted) {
 			setShowSuccessSection(false);
@@ -95,7 +99,7 @@ export default function MakeAppointmentPage() {
 				<MainPageTemplate>
 					<PageIndicator
 						pageName="Marcar Consulta"
-						returnTo={appointmentRoutes.locationPage(locationId)}
+						returnTo={() => navigate(appointmentRoutes.locationPage(location_id))}
 					/>
 					<section>
 						<div className={style.locationInformation}>
@@ -112,7 +116,8 @@ export default function MakeAppointmentPage() {
 									{locationData.type}
 								</p>
 								<p className="kanit-medium text-small">
-									Avaliação geral do local: {locationData.rating}
+									Avaliação geral do local:{' '}
+									{locationData.rating}
 								</p>
 							</article>
 						</div>
