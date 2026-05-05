@@ -2,6 +2,7 @@
 import style from './HomePage.module.css';
 
 // External Code Import
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { appointmentRoutes } from '../../routes/routesPaths';
 import storage from '../../utils/localStorage';
@@ -18,7 +19,10 @@ import Vaccine from '../../assets/icons/Vaccine';
 import Calendar from '../../assets/icons/Calendar';
 
 
+
 export default function HomePage() {
+	const [userInfo, setUserInfo] = useState({});
+
 	const navigate = useNavigate();
 	const actualTime = new Date();
 	const localHour = actualTime.getHours();
@@ -32,9 +36,14 @@ export default function HomePage() {
 			return 'Boa noite!';
 	};
 
-	storage.save('user-info', {
-		first_name: 'Usuário',
-	});
+	useEffect(() => {
+		storage.save('user-info', {
+			first_name: 'Usuário',
+		});
+
+		storage.get('user-info');
+		setUserInfo(storage.get('user-info'));
+	}, []);
 
 	return (
 		<MainPageTemplate>
@@ -42,7 +51,7 @@ export default function HomePage() {
 				<div className={style.greetings}>
 					<p className="kanit-regular text-medium">{greetings()}</p>
 					<strong className="kanit-semibold text-medium">
-						{storage.get('user-info').first_name},
+						{userInfo.first_name},
 					</strong>
 					<p className="kanit-regular">como podemos ajudá-lo?</p>
 				</div>
