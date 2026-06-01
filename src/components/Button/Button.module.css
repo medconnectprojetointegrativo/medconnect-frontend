@@ -1,4 +1,6 @@
 .buttonBase {
+    word-break: break-all;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +38,9 @@
     height: 28px;
 }
 
-
+.buttonAuto {
+    height: auto;
+}
 .buttonSmall {
     height: 30px;
 }

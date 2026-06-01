@@ -1,0 +1,36 @@
+.cardContainer {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 600px; /* Limite seguro para o texto não esticar demais */
+  box-sizing: border-box;
+  font-family: sans-serif; /* Use a mesma fonte do seu projeto */
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--primary-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.starsContainer {
+  display: flex;
+  gap: 2px;
+}
+

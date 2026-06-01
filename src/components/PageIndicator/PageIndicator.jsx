@@ -15,16 +15,14 @@ export default function PageIndicator({
 			className={style.container}
 			style={{ marginTop: marginTop, marginBottom: marginBottom }}
 		>
-			<div className={style.returnButton}>
-				<ArrowLeft
-					onClick={() => returnTo()}
-				/>
-				<p className='kanit-regular text-tiny'>Voltar</p>
+			<div className={style.returnButton} onClick={() => returnTo()}>
+				<ArrowLeft />
+				<p className="kanit-regular text-tiny">Voltar</p>
 			</div>
 
 			<div className={style.column}>
 				<h1
-					className={`kanit-light text-small text-primary ${style.pageName}`}
+					className={`kanit-regular text-standard text-primary ${style.pageName}`}
 				>
 					{pageName}
 				</h1>

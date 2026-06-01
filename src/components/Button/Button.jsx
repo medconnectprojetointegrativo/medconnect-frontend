@@ -11,6 +11,8 @@ export default function Button({
 	text = 'Insira um texto!',
 	form,
 	onClick,
+	onMouseEnter,
+	onMouseLeave,
 	type,
 	className,
 }) {
@@ -21,6 +23,7 @@ export default function Button({
 	};
 
 	const heights = {
+		auto: style.buttonAuto,
 		small: style.buttonSmall,
 		medium: style.buttonMedium,
 		large: style.buttonLarge,
@@ -76,6 +79,8 @@ export default function Button({
 			style={{ width: width }}
 			disabled={disabled}
 			onClick={onClick}
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
 			form={form}
 			type={type}
 		>

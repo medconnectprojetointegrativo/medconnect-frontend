@@ -15,7 +15,7 @@ export default function LocationDisplayer({location}) {
 			<div>
 				<h2 className={`kanit-semibold text-white ${style.locationName}`}>{location.name}</h2>
 				<p className={`kanit-regular text-white ${style.locationDistance}`}>À {location.distance} de distância de você</p>
-				<p className={`kanit-regular text-white ${style.locationAddress}`}><FilledLocation className={style.locationIcon}/>{location.address}</p>
+				<p className={`kanit-regular text-white ${style.locationAddress}`}><FilledLocation className={style.locationIcon}/>{location.address} | {location.city}, {location.state}</p>
 			</div>
 		</div>
 	);
