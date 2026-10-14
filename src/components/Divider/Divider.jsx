@@ -3,14 +3,14 @@ export default function Divider({direction, size = '80%', margin = '15px', class
     let style = {
         justifySelf: 'center',
         alignSelf: 'center',
-        backgroundColor: '#0000007a',
+        backgroundColor: '#00000052',
     }
 
     let directionStyle;
     if (direction === 'vertical') {
         directionStyle = {
 			height: size,
-			width: '2px',
+			width: '1px',
 			margin: `0 ${margin}`,
             ...style
 		};
@@ -18,7 +18,7 @@ export default function Divider({direction, size = '80%', margin = '15px', class
 
     if (direction === 'horizontal') {
         directionStyle = {
-			height: '2px',
+			height: '1px',
 			width: size,
 			margin: `${margin} 0`,
             ...style

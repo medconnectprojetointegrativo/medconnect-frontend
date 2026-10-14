@@ -6,7 +6,7 @@
 	padding: 10px;
 	max-width: 200px;
 	height: 100dvh;
-	transition: 0.3s;
+	transition: width 0.3s;
 	background-color: var(--primary-color);
 }
 
