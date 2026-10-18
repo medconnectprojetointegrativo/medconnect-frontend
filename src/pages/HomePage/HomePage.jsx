@@ -18,10 +18,11 @@ import Exam from '../../assets/icons/Exam';
 import Vaccine from '../../assets/icons/Vaccine';
 import Calendar from '../../assets/icons/Calendar';
 
-
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function HomePage() {
 	const [userInfo, setUserInfo] = useState({});
+	const { user } = useAuth();
 
 	const navigate = useNavigate();
 	const actualTime = new Date();
@@ -36,22 +37,13 @@ export default function HomePage() {
 			return 'Boa noite!';
 	};
 
-	useEffect(() => {
-		storage.save('user-info', {
-			first_name: 'Usuário',
-		});
-
-		storage.get('user-info');
-		setUserInfo(storage.get('user-info'));
-	}, []);
-
 	return (
 		<MainPageTemplate>
 			<section className={style.section}>
 				<div className={style.greetings}>
 					<p className="kanit-regular text-medium">{greetings()}</p>
 					<strong className="kanit-semibold text-medium">
-						{userInfo.first_name},
+						{user?.nome},
 					</strong>
 					<p className="kanit-regular">como podemos ajudá-lo?</p>
 				</div>

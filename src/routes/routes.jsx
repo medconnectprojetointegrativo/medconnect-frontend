@@ -12,6 +12,7 @@ import SearchLocationsPage from '../pages/SearchLocationsPage/SearchLocationsPag
 import LocationDisplayer from '../components/LocationDisplayer/LocationDisplayer';
 import LocationInformationPage from '../pages/LocationInformationPage/LocationInformationPage';
 import MakeAppointmentPage from '../pages/MakeAppointmentPage/MakeAppointmentPage';
+import { ProtectedRoute } from './ProtectedRoute';
 
 
 
@@ -26,22 +27,28 @@ export default function AppRoutes() {
 				path={authenticationRoutes.loginPage}
 				element={<LoginPage />}
 			/>
+
 			<Route
 				path={authenticationRoutes.registerPage}
 				element={<RegisterPage />}
 			/>
 
-			<Route path="/home" element={<HomePage />} />
+			<Route element={<ProtectedRoute />}>
+				<Route path="/home" element={<HomePage />} />
 
-			<Route
-				path={appointmentRoutes.searchLocationsPage}
-				element={<SearchLocationsPage />}
-			/>
-			<Route path="/location/:location_id" element={<LocationInformationPage />} />
-			<Route
-				path="/location/:location_id/appointment"
-				element={<MakeAppointmentPage />}
-			/>
+				<Route
+					path={appointmentRoutes.searchLocationsPage}
+					element={<SearchLocationsPage />}
+				/>
+				<Route
+					path="/location/:location_id"
+					element={<LocationInformationPage />}
+				/>
+				<Route
+					path="/location/:location_id/appointment"
+					element={<MakeAppointmentPage />}
+				/>
+			</Route>
 
 			<Route path="*" element={<Navigate to="/home" />} />
 		</Routes>
