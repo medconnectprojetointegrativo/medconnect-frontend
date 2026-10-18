@@ -1,12 +1,13 @@
 import style from './ProfileDisplayer.module.css';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
-import User from '../../assets/icons/User'
+import User from '../../assets/icons/User';
 import storage from '../../utils/localStorage';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function ProfileDisplayer() {
-	const [userData, setUserData] = useState({ first_name: 'Usuário' });
+	const { user } = useAuth();
 	const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
 
 	function toggleProfileOptions() {
@@ -14,19 +15,17 @@ export default function ProfileDisplayer() {
 		if (!isProfileOptionsOpen) return setIsProfileOptionsOpen(true);
 	}
 
-	useEffect(() => {
-		storage.save('user-info', userData);
-	})
-
 	return (
-			<div
-				className={style.profileDisplayer}
-				onClick={() => toggleProfileOptions()}
-			>
-				<p className="kanit-regular text-white text-tiny">{userData.first_name}</p>
-				<span>
-					<User />
-				</span>
-			</div>
+		<div
+			className={style.profileDisplayer}
+			onClick={() => toggleProfileOptions()}
+		>
+			<p className="kanit-regular text-white text-tiny">
+				{user?.nome}
+			</p>
+			<span>
+				<User />
+			</span>
+		</div>
 	);
 }

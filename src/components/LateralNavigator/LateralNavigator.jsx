@@ -11,10 +11,16 @@ import Exam from '../../assets/icons/Exam';
 import Vaccine from '../../assets/icons/Vaccine';
 import Calendar from '../../assets/icons/Calendar';
 import { useState } from 'react';
-import { appointmentRoutes, authenticationRoutes } from '../../routes/routesPaths';
+import {
+	appointmentRoutes,
+	authenticationRoutes,
+} from '../../routes/routesPaths';
 import DoorExit from '../../assets/icons/DoorExit';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function LateralNavigator() {
+	const { logout } = useAuth();
+
 	const options = [
 		{
 			key: 'home',
@@ -78,25 +84,24 @@ export default function LateralNavigator() {
 				{options.map((option) => (
 					<li
 						className={`${style.listOption} ${isOpen && style.listOptionOpen}`}
-						key={option.key} onClick={() => navigate(option.path)}
+						key={option.key}
+						onClick={() => navigate(option.path)}
 					>
-							<span className={style.menuIcon}>
-								{option.icon}
-							</span>
-							{isOpen && (
-								<p
-									className={`kanit-semibold ${style.menuLabel}`}
-								>
-									{option.label}
-								</p>
-							)}
+						<span className={style.menuIcon}>{option.icon}</span>
+						{isOpen && (
+							<p className={`kanit-semibold ${style.menuLabel}`}>
+								{option.label}
+							</p>
+						)}
 					</li>
 				))}
 			</ul>
 
-			<div className={style.iconContainer}>
-				<Link className={style.link} to={authenticationRoutes.authenticationPage}>
-					<span className={style.exitIcon}><DoorExit /></span>
+			<div className={style.iconContainer} onClick={() => logout()}>
+				<Link className={style.link}>
+					<span className={style.exitIcon}>
+						<DoorExit />
+					</span>
 					{isOpen && (
 						<p className={`kanit-semibold ${style.menuLabel}`}>
 							Sair

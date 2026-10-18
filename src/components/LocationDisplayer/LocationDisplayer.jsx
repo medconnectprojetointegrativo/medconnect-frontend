@@ -9,13 +9,13 @@ export default function LocationDisplayer({location}) {
     const navigate = useNavigate();
 
     return (
-		<div className={style.container} onClick={() => navigate(appointmentRoutes.locationPage(location.id))}>
-			<img src={location.logo} alt="Logo do Local" className={style.locationImage} />
+		<div className={style.container} onClick={() => navigate(appointmentRoutes.locationPage(location.id_local))}>
+			<img src={location?.logo} alt="Logo do Local" className={style.locationImage} />
 
 			<div>
-				<h2 className={`kanit-semibold text-white ${style.locationName}`}>{location.name}</h2>
-				<p className={`kanit-regular text-white ${style.locationDistance}`}>À {location.distance} de distância de você</p>
-				<p className={`kanit-regular text-white ${style.locationAddress}`}><FilledLocation className={style.locationIcon}/>{location.address} | {location.city}, {location.state}</p>
+				<h2 className={`kanit-semibold text-white ${style.locationName}`}>{location?.nome}</h2>
+				{/* <p className={`kanit-regular text-white ${style.locationDistance}`}>À {location?.distance} de distância de você</p> */}
+				<p className={`kanit-regular text-white ${style.locationAddress}`}><FilledLocation className={style.locationIcon}/>{`${location.endereco.logradouro}, ${location.endereco.numero} | ${location.endereco.cidade}, ${location.endereco.estado}`}</p>
 			</div>
 		</div>
 	);

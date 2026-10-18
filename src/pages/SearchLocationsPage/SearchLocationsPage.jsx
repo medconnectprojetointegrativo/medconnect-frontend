@@ -2,10 +2,12 @@
 import style from './SearchLocationsPage.module.css';
 
 // External Code Import
-import { homePath } from '../../routes/routesPaths';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import locationsData from '../../mocks/locationsData.js'
+import { homePath } from '../../routes/routesPaths';
+
+// Services Import
+import { locaisService } from '../../services/locaisService.js';
 
 // Component Import
 import LocationDisplayer from '../../components/LocationDisplayer/LocationDisplayer';
@@ -13,11 +15,39 @@ import PageIndicator from '../../components/PageIndicator/PageIndicator';
 import MainPageTemplate from '../../templates/MainPageTemplate/MainPageTemplate';
 import SearchBar from '../../components/SearchBar/SearchBar.jsx';
 
-
 export default function SearchLocationsPage() {
 	const navigate = useNavigate();
-	const locations = locationsData;
-	const [filteredLocations, setFilteredLocations] = useState(locationsData);
+
+	// Inicia com arrays vazios para evitar erros de renderização inicial
+	const [locations, setLocations] = useState([]);
+	const [filteredLocations, setFilteredLocations] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		let isMounted = true;
+
+		async function buscarDados() {
+			try {
+				setLoading(true);
+				const response = await locaisService.buscarTodosLocais();
+
+				if (isMounted && response?.data) {
+					setLocations(response.data);
+					setFilteredLocations(response.data);
+				}
+			} catch (error) {
+				console.error('Erro ao carregar locais:', error);
+			} finally {
+				if (isMounted) setLoading(false);
+			}
+		}
+
+		buscarDados();
+
+		return () => {
+			isMounted = false;
+		};
+	}, []);
 
 	return (
 		<MainPageTemplate>
@@ -30,18 +60,30 @@ export default function SearchLocationsPage() {
 				/>
 
 				<div className={style.actions}>
-					<SearchBar input={locations} output={setFilteredLocations} searchKey="name"/>
+					<SearchBar
+						input={locations}
+						output={setFilteredLocations}
+						searchKey="name"
+					/>
 				</div>
 
 				<div className={style.content}>
-					<ul className={style.locationsList}>
-						{filteredLocations.map((locationData) => (
-							<LocationDisplayer
-								key={locationData.id}
-								location={locationData}
-							/>
-						))}
-					</ul>
+					{loading ? (
+						<p>Carregando clínicas...</p>
+					) : (
+						<ul className={style.locationsList}>
+							{filteredLocations.length > 0 ? (
+								filteredLocations.map((location) => (
+									<LocationDisplayer
+										key={location.id_local}
+										location={location}
+									/>
+								))
+							) : (
+								<p>Nenhuma clínica encontrada.</p>
+							)}
+						</ul>
+					)}
 				</div>
 			</section>
 		</MainPageTemplate>
